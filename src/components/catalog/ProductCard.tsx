@@ -46,27 +46,27 @@ export function ProductCard({ product }: ProductCardProps) {
     : 0;
 
   return (
-    <div className="group relative bg-white border border-[#e6dfd3] rounded-xl overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+    <div className="group relative bg-white border border-[#e6dfd3] rounded-xl overflow-hidden card-hover-lift flex flex-col">
       {/* Badges Overlay */}
-      <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
+      <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
         {isOutOfStock ? (
-          <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase bg-[#141716] text-white rounded-md">
+          <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase bg-[#141716] text-white rounded-md shadow-xs">
             Out of Stock
           </span>
         ) : (
           <>
             {product.isBestseller && (
-              <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase bg-[#1b3b2c] text-white rounded-md">
-                Bestseller
+              <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase bg-[#1b3b2c] text-white rounded-md shadow-xs flex items-center space-x-1">
+                <span>Bestseller</span>
               </span>
             )}
             {product.isNewArrival && (
-              <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase bg-[#b87328] text-white rounded-md">
-                New
+              <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase bg-[#b87328] text-white rounded-md shadow-xs animate-badge-glow">
+                ★ New
               </span>
             )}
             {hasDiscount && (
-              <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase bg-emerald-800 text-white rounded-md">
+              <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase bg-emerald-800 text-white rounded-md shadow-xs">
                 Save {discountPercent}%
               </span>
             )}
@@ -144,7 +144,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
           <Link
             href={`/products/${product.slug}`}
-            className="px-3.5 py-1.5 bg-[#f3eee3] text-[#1b3b2c] hover:bg-[#1b3b2c] hover:text-white rounded-lg text-xs font-semibold transition-colors"
+            className="px-3.5 py-1.5 bg-[#f3eee3] text-[#1b3b2c] hover:bg-[#1b3b2c] hover:text-white rounded-lg text-xs font-semibold btn-shimmer btn-press transition-all duration-200"
           >
             Select Options
           </Link>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Check, Mail, ArrowRight, ShieldCheck } from "lucide-react";
 
 export function Footer() {
@@ -41,13 +42,24 @@ export function Footer() {
         {/* Top Section: Brand & Newsletter */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-14 border-b border-[#1f4533]">
           <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center space-x-2.5">
-              <div className="w-9 h-9 rounded-full bg-[#31684f] text-[#fbf9f5] flex items-center justify-center font-bold text-base">
-                KO
+            <div className="flex items-center space-x-3">
+              <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white p-1 border border-[#2d5c44] shadow-xs flex items-center justify-center">
+                <Image
+                  src="/images/krag-logo.jpeg"
+                  alt="KRAG Organic Logo"
+                  width={44}
+                  height={44}
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="font-serif text-2xl font-bold tracking-tight text-white">
-                KRAG <span className="text-[#dcb36d] text-lg font-sans font-medium uppercase tracking-[0.2em] ml-1">ORGANIC</span>
-              </span>
+              <div className="flex flex-col">
+                <span className="font-serif text-2xl font-bold tracking-tight text-white leading-none">
+                  KRAG <span className="text-[#dcb36d] text-lg font-sans font-medium uppercase tracking-[0.2em] ml-1">ORGANIC</span>
+                </span>
+                <span className="text-[9px] uppercase tracking-[0.2em] text-[#b5d5c5] font-medium mt-1">
+                  CREATE &bull; INSPIRE &bull; GROW
+                </span>
+              </div>
             </div>
             <p className="text-sm text-[#b5d5c5] leading-relaxed max-w-md">
               Pioneering clean sports nutrition and fitness supplements crafted with pristine botanicals, grass-fed proteins, and third-party verified purity. Zero synthetic dyes, zero fillers, zero compromises.

@@ -30,6 +30,7 @@ async function main() {
   // 2. Seed Default Store Settings
   const settings = [
     { key: "store_name", value: "Krag Organic", description: "Official storefront name" },
+    { key: "store_logo", value: "/images/krag-logo.jpeg", description: "Official brand logo" },
     { key: "store_tagline", value: "Pure botanical sports nutrition & clean supplements", description: "Store slogan" },
     { key: "store_email", value: "care@kragorganic.com", description: "Customer care email" },
     { key: "store_phone", value: "+977-1-4567890", description: "Support phone number" },
@@ -130,8 +131,82 @@ async function main() {
     categoryMap.set(cat.slug, created.id);
   }
 
-  // 5. Seed 14 Realistic Sample Products Across Categories
+  // 5. Seed Authentic Krag Organic Flagship Products & Catalog
   const productsData = [
+    // AUTHENTIC KRAG ORGANIC FLAGSHIP PRODUCTS
+    {
+      name: "PROKAM Chocolate Drink Pre-Mix & Protein",
+      slug: "prokam-chocolate-drink-pre-mix",
+      subtitle: "Nourishing Everyday, The Natural Way • Rich Chocolate Flavour",
+      categoryId: categoryMap.get("protein-powder")!,
+      description:
+        "Nourishing everyday the natural way. PROKAM is an all-natural chocolate drink pre-mix and protein formulation packed with superior nutrition, sustained energy boost, and holistic wellness support. Crafted with rich chocolate flavour, wholesome macro-nutrients, and falcon vitality formula with zero synthetic dyes or preservatives.",
+      ingredients: "Wholesome Protein Blend, Premium Cocoa Solids, Whole Grain Flours, Falcon Nutrition Complex, Natural Minerals and Vitamins.",
+      suggestedUsage: "Mix 2 scoops (30g) in 200–250ml of warm or cold milk or water. Stir briskly or shake in a bottle until creamy and smooth. Enjoy once or twice daily.",
+      allergens: "Contains Milk and Soy. 100% Natural, Preservative-Free.",
+      packageSize: "500g Tub / 1kg Tub",
+      basePrice: 1850,
+      compareAtPrice: 2200,
+      isFeatured: true,
+      isBestseller: true,
+      isNewArrival: true,
+      images: [
+        "/images/prokam.jpeg",
+        "/images/prokam-detail.jpeg",
+      ],
+      variants: [
+        { name: "Rich Chocolate / 500g Tub", flavor: "Rich Chocolate", weight: "500g", sku: "PROKAM-CHOC-500G", price: 1850, compareAtPrice: 2200, stock: 85 },
+        { name: "Rich Chocolate / 1kg Tub", flavor: "Rich Chocolate", weight: "1kg", sku: "PROKAM-CHOC-1KG", price: 3400, compareAtPrice: 3950, stock: 60 },
+      ],
+    },
+    {
+      name: "KRAG Organic Dal Pre Mix",
+      slug: "krag-organic-dal-pre-mix",
+      subtitle: "Goodness of Dal in Every Bowl • Natural, Nutritious, Delicious",
+      categoryId: categoryMap.get("wellness")!,
+      description:
+        "Goodness of dal in every bowl. KRAG Organic Dal Pre Mix is packed with high protein, rich in fiber, 100% natural, and made with zero preservatives. Made in Nepal (Parsa 02, Sarlahi) with premium slow-roasted lentils and indigenous spices for an authentic, nutritious, and comforting daily meal.",
+      ingredients: "Roasted moong dal powder, Roasted masoor dal powder, Roasted toor dal powder, Cumin powder, Coriander powder, Turmeric powder, Himalayan salt, Red chilli powder.",
+      suggestedUsage: "Add 50g of Dal Pre Mix to 250–300ml of water. Mix well and cook for a few minutes until desired consistency is achieved. Simple ingredients, great taste!",
+      allergens: "100% Plant-Based, No Preservatives, Gluten-Free.",
+      packageSize: "400g Pouch / 800g Family Pack",
+      basePrice: 480,
+      compareAtPrice: 550,
+      isFeatured: true,
+      isBestseller: true,
+      isNewArrival: true,
+      images: [
+        "/images/dal-pre-mix.jpeg",
+      ],
+      variants: [
+        { name: "Traditional Blend / 400g Pouch", flavor: "Traditional Blend", weight: "400g", sku: "DAL-PREMIX-400G", price: 480, compareAtPrice: 550, stock: 120 },
+        { name: "Traditional Blend / 800g Family Pack", flavor: "Traditional Blend", weight: "800g", sku: "DAL-PREMIX-800G", price: 890, compareAtPrice: 1050, stock: 75 },
+      ],
+    },
+    {
+      name: "KRAG Organic Milk Tea Premix",
+      slug: "krag-organic-milk-tea-premix",
+      subtitle: "Classic Masala Tea • Rich Aroma, Smooth Taste",
+      categoryId: categoryMap.get("wellness")!,
+      description:
+        "Good things in every cup. KRAG Milk Tea Premix Classic Masala Tea offers authentic Nepali tea flavour, rich aroma, and smooth taste crafted with pure ingredients. Infused with natural cardamom, ginger, cinnamon, and cloves to give you an invigorating, antioxidant-rich tea ritual in less than 2 minutes.",
+      ingredients: "Tea powder, Dairy milk powder, Sugar, Natural Spices (Cinnamon, Cardamom, Ginger, Cloves).",
+      suggestedUsage: "Boil 100ml of premix in 160ml of water for 1 minute. Strain it into your favorite cup and enjoy.",
+      allergens: "Contains Dairy Milk Powder. 100% Natural Ingredients, No Artificial Flavors.",
+      packageSize: "200g (20 Pouches of 10g Each)",
+      basePrice: 390,
+      compareAtPrice: 450,
+      isFeatured: true,
+      isBestseller: true,
+      isNewArrival: true,
+      images: [
+        "/images/milk-tea.jpeg",
+      ],
+      variants: [
+        { name: "Classic Masala / 200g (20 Pouches)", flavor: "Classic Masala", weight: "200g", sku: "TEA-MASALA-200G", price: 390, compareAtPrice: 450, stock: 150 },
+        { name: "Classic Masala / Twin Pack (40 Pouches)", flavor: "Classic Masala", weight: "400g", sku: "TEA-MASALA-400G", price: 740, compareAtPrice: 850, stock: 95 },
+      ],
+    },
     // PROTEIN
     {
       name: "Krag Grass-Fed Whey Isolate",

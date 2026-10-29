@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import {
@@ -44,15 +45,21 @@ export default async function AdminLayout({
       <aside className="w-64 bg-[#12281e] text-[#f2f7f4] flex flex-col flex-shrink-0 border-r border-[#1e4733] hidden md:flex">
         {/* Brand Header */}
         <div className="p-6 border-b border-[#1e4733] flex items-center justify-between">
-          <Link href="/admin" className="flex items-center space-x-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#31684f] text-[#fbf9f5] flex items-center justify-center font-bold text-sm">
-              KO
+          <Link href="/admin" className="flex items-center space-x-3">
+            <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-white p-1 border border-[#2d5c44] flex items-center justify-center">
+              <Image
+                src="/images/krag-logo.jpeg"
+                alt="KRAG Logo"
+                width={36}
+                height={36}
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <span className="font-serif text-lg font-bold text-white block leading-none">
                 KRAG
               </span>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#dcb36d] font-semibold">
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#dcb36d] font-semibold">
                 ADMIN PORTAL
               </span>
             </div>

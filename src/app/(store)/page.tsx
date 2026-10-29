@@ -54,10 +54,10 @@ export default async function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#1b3b2c] border border-[#2d5c44] text-[#dcb36d] text-xs font-semibold tracking-wide uppercase">
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left animate-fade-in-up">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#1b3b2c] border border-[#2d5c44] text-[#dcb36d] text-xs font-semibold tracking-wide uppercase shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Pure Himalayan & Grass-Fed Nutrition</span>
+                <span>Pure Himalayan & Organic Nutrition</span>
               </div>
 
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
@@ -66,68 +66,81 @@ export default async function HomePage() {
               </h1>
 
               <p className="text-base sm:text-lg text-[#dcece3] max-w-2xl leading-relaxed mx-auto lg:mx-0">
-                Cold-filtered grass-fed whey isolate, micronized creatine, clean pre-workouts, and wild-harvested Himalayan Shilajit. Free from synthetic food dyes, sucralose, or filler gums.
+                All-natural PROKAM chocolate pre-mixes, organic protein dal blends, authentic masala milk tea, and pure cold-filtered nutrition. Free from synthetic dyes, chemical fillers, or compromises.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                 <Link
                   href="/products"
-                  className="w-full sm:w-auto px-8 py-3.5 bg-[#dcb36d] text-[#12281e] hover:bg-[#e8c688] font-bold text-sm rounded-lg transition-all shadow-md flex items-center justify-center space-x-2 group"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-[#dcb36d] text-[#12281e] hover:bg-[#e8c688] font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 group btn-shimmer btn-press"
                 >
-                  <span>Shop All Supplements</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span>Shop All Products</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </Link>
 
                 <Link
-                  href="/products?category=protein-powder"
-                  className="w-full sm:w-auto px-8 py-3.5 bg-[#1b3b2c] hover:bg-[#25513d] text-white border border-[#2d5c44] font-semibold text-sm rounded-lg transition-colors flex items-center justify-center"
+                  href="/products/prokam-chocolate-drink-pre-mix"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-[#1b3b2c] hover:bg-[#25513d] text-white border border-[#2d5c44] font-semibold text-sm rounded-xl transition-all flex items-center justify-center btn-press hover:border-[#dcb36d]/50"
                 >
-                  Explore Clean Proteins
+                  Explore PROKAM & Premixes
                 </Link>
               </div>
 
               {/* Trust badges row */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-[#1f4533] text-left">
-                <div className="flex items-center space-x-2">
-                  <ShieldCheck className="w-5 h-5 text-[#dcb36d] flex-shrink-0" />
-                  <span className="text-xs text-[#b5d5c5]">Third-Party Verified Samples</span>
+                <div className="flex items-center space-x-2 group">
+                  <ShieldCheck className="w-5 h-5 text-[#dcb36d] flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs text-[#b5d5c5]">100% Nepali Natural</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Leaf className="w-5 h-5 text-[#dcb36d] flex-shrink-0" />
+                <div className="flex items-center space-x-2 group">
+                  <Leaf className="w-5 h-5 text-[#dcb36d] flex-shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="text-xs text-[#b5d5c5]">Zero Synthetic Dyes</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Award className="w-5 h-5 text-[#dcb36d] flex-shrink-0" />
-                  <span className="text-xs text-[#b5d5c5]">100% Grass-Fed Dairy</span>
+                <div className="flex items-center space-x-2 group">
+                  <Award className="w-5 h-5 text-[#dcb36d] flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs text-[#b5d5c5]">High Natural Protein</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Zap className="w-5 h-5 text-[#dcb36d] flex-shrink-0" />
-                  <span className="text-xs text-[#b5d5c5]">Free Domestic Delivery &gt; 3.5k</span>
+                <div className="flex items-center space-x-2 group">
+                  <Zap className="w-5 h-5 text-[#dcb36d] flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs text-[#b5d5c5]">Free Delivery &gt; Rs. 3,500</span>
                 </div>
               </div>
             </div>
 
             {/* Hero Image Showcase */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-[#25513d] shadow-2xl">
+            <div className="lg:col-span-5 relative animate-fade-in animation-delay-200">
+              {/* Floating Badge Top Right */}
+              <div className="absolute -top-3 -right-3 sm:-right-4 z-20 bg-[#dcb36d] text-[#12281e] px-4 py-2 rounded-2xl shadow-xl font-bold text-xs uppercase tracking-wider flex items-center space-x-1.5 animate-float border border-[#f3e3be]">
+                <Sparkles className="w-3.5 h-3.5 text-[#12281e]" />
+                <span>Made in Nepal</span>
+              </div>
+
+              <div className="relative aspect-[4/5] sm:aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border-2 border-[#2d5c44] shadow-2xl bg-[#0f2018] group">
                 <Image
-                  src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=1200&q=80"
-                  alt="Krag Organic Clean Supplement Formulations"
+                  src="/images/prokam.jpeg"
+                  alt="PROKAM All-Natural Chocolate Drink Pre-Mix and Protein"
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 500px"
-                  className="object-cover object-center"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#12281e]/90 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-[#1b3b2c]/90 backdrop-blur-md border border-[#2d5c44]">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#dcb36d]">
-                    Featured Batch
-                  </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#12281e] via-[#12281e]/30 to-transparent" />
+                
+                {/* Floating Bottom Info Card */}
+                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-[#1b3b2c]/95 backdrop-blur-md border border-[#2d5c44] shadow-lg animate-float-delayed">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#dcb36d]">
+                      Featured Flagship Batch
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+                      Parsa 02, Sarlahi
+                    </span>
+                  </div>
                   <p className="font-serif text-lg font-bold text-white">
-                    Cold-Processed Whey Isolate (Bourbon Vanilla)
+                    PROKAM Chocolate Drink Pre-Mix
                   </p>
                   <p className="text-xs text-[#b5d5c5] mt-1">
-                    27g native protein &bull; Zero lactose &bull; Unsweetened by chemicals
+                    Nourishing Everyday The Natural Way &bull; Rich Chocolate Flavour
                   </p>
                 </div>
               </div>
@@ -161,7 +174,7 @@ export default async function HomePage() {
             <Link
               key={cat.id}
               href={`/products?category=${cat.slug}`}
-              className="group relative rounded-xl overflow-hidden border border-[#e6dfd3] bg-white hover:shadow-lg transition-all duration-300 flex flex-col"
+              className="group relative rounded-2xl overflow-hidden border border-[#e6dfd3] bg-white card-hover-lift flex flex-col"
             >
               <div className="relative aspect-4/3 bg-[#f3eee3] overflow-hidden">
                 {cat.image ? (
@@ -241,9 +254,9 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-7 rounded-xl border border-[#e6dfd3] shadow-xs flex flex-col justify-between">
+            <div className="bg-white p-7 rounded-2xl border border-[#e6dfd3] card-hover-lift flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-lg bg-[#e8f0eb] text-[#1b3b2c] flex items-center justify-center font-bold mb-5">
+                <div className="w-12 h-12 rounded-xl bg-[#e8f0eb] text-[#1b3b2c] flex items-center justify-center font-bold mb-5 shadow-xs">
                   01
                 </div>
                 <h3 className="font-serif text-lg font-bold text-[#141716] mb-2">
@@ -258,9 +271,9 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="bg-white p-7 rounded-xl border border-[#e6dfd3] shadow-xs flex flex-col justify-between">
+            <div className="bg-white p-7 rounded-2xl border border-[#e6dfd3] card-hover-lift flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-lg bg-[#faebd7] text-[#8c571e] flex items-center justify-center font-bold mb-5">
+                <div className="w-12 h-12 rounded-xl bg-[#faebd7] text-[#8c571e] flex items-center justify-center font-bold mb-5 shadow-xs">
                   02
                 </div>
                 <h3 className="font-serif text-lg font-bold text-[#141716] mb-2">
@@ -275,9 +288,9 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="bg-white p-7 rounded-xl border border-[#e6dfd3] shadow-xs flex flex-col justify-between">
+            <div className="bg-white p-7 rounded-2xl border border-[#e6dfd3] card-hover-lift flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-lg bg-[#e8f0eb] text-[#1b3b2c] flex items-center justify-center font-bold mb-5">
+                <div className="w-12 h-12 rounded-xl bg-[#e8f0eb] text-[#1b3b2c] flex items-center justify-center font-bold mb-5 shadow-xs">
                   03
                 </div>
                 <h3 className="font-serif text-lg font-bold text-[#141716] mb-2">
@@ -292,9 +305,9 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="bg-white p-7 rounded-xl border border-[#e6dfd3] shadow-xs flex flex-col justify-between">
+            <div className="bg-white p-7 rounded-2xl border border-[#e6dfd3] card-hover-lift flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-lg bg-[#faebd7] text-[#8c571e] flex items-center justify-center font-bold mb-5">
+                <div className="w-12 h-12 rounded-xl bg-[#faebd7] text-[#8c571e] flex items-center justify-center font-bold mb-5 shadow-xs">
                   04
                 </div>
                 <h3 className="font-serif text-lg font-bold text-[#141716] mb-2">

@@ -62,12 +62,12 @@ export function CartDrawer() {
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity animate-fade-in"
         onClick={() => setIsCartDrawerOpen(false)}
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-[#fbf9f5] border-l border-[#e6dfd3] shadow-2xl flex flex-col">
+        <div className="w-screen max-w-md bg-[#fbf9f5] border-l border-[#e6dfd3] shadow-2xl flex flex-col animate-slide-in-right">
           {/* Header */}
           <div className="px-6 py-5 border-b border-[#e6dfd3] flex items-center justify-between bg-white">
             <div className="flex items-center space-x-2">
@@ -291,7 +291,7 @@ export function CartDrawer() {
                 <button
                   type="button"
                   onClick={handleProceedToCheckout}
-                  className="w-full py-3 bg-[#1b3b2c] text-white font-semibold text-sm rounded-lg hover:bg-[#25513d] transition-colors flex items-center justify-center space-x-2 shadow-sm"
+                  className="w-full py-3 bg-[#1b3b2c] text-white font-semibold text-sm rounded-xl hover:bg-[#25513d] transition-all flex items-center justify-center space-x-2 shadow-sm btn-shimmer btn-press"
                 >
                   <span>Proceed to Checkout</span>
                   <ArrowRight className="w-4 h-4" />

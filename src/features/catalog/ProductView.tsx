@@ -169,18 +169,18 @@ export function ProductView({ product, relatedProducts }: ProductViewProps) {
       {/* Main Product Section: Gallery + Purchasing Details */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Left Column: Image Gallery */}
-        <div className="lg:col-span-7 space-y-4">
-          <div className="relative aspect-square bg-white border border-[#e6dfd3] rounded-2xl overflow-hidden shadow-xs">
+        <div className="lg:col-span-7 space-y-4 animate-fade-in-up">
+          <div className="relative aspect-square bg-white border border-[#e6dfd3] rounded-3xl overflow-hidden shadow-xs group">
             <Image
               src={currentImage}
               alt={product.name}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 600px"
-              className="object-cover object-center"
+              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             />
             {comparePrice && comparePrice > currentPrice && (
-              <span className="absolute top-4 left-4 px-3 py-1 bg-emerald-800 text-white text-xs font-bold rounded-lg uppercase tracking-wider">
+              <span className="absolute top-4 left-4 px-3 py-1 bg-emerald-800 text-white text-xs font-bold rounded-lg uppercase tracking-wider shadow-sm animate-badge-glow">
                 Save {Math.round(((comparePrice - currentPrice) / comparePrice) * 100)}%
               </span>
             )}
@@ -196,8 +196,8 @@ export function ProductView({ product, relatedProducts }: ProductViewProps) {
                   onClick={() => setSelectedImageIndex(idx)}
                   className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 bg-white flex-shrink-0 transition-all ${
                     selectedImageIndex === idx
-                      ? "border-[#1b3b2c] ring-2 ring-[#1b3b2c]/20"
-                      : "border-[#e6dfd3] hover:border-[#85958d]"
+                      ? "border-[#1b3b2c] ring-2 ring-[#1b3b2c]/20 scale-105 shadow-xs"
+                      : "border-[#e6dfd3] hover:border-[#85958d] hover:scale-102"
                   }`}
                 >
                   <Image
@@ -214,7 +214,7 @@ export function ProductView({ product, relatedProducts }: ProductViewProps) {
         </div>
 
         {/* Right Column: Title, Rating, Variant Selector, Stock, Add to Cart */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-6 animate-fade-in-up animation-delay-100">
           <div>
             <span className="text-xs uppercase tracking-widest font-bold text-[#8c571e]">
               {product.category?.name || "Pure Formulation"}
@@ -366,7 +366,7 @@ export function ProductView({ product, relatedProducts }: ProductViewProps) {
                 type="button"
                 onClick={handleAddToCart}
                 disabled={isOutOfStock}
-                className="flex-1 py-3.5 bg-[#1b3b2c] hover:bg-[#25513d] text-white font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="flex-1 py-3.5 bg-[#1b3b2c] hover:bg-[#25513d] text-white font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed group btn-shimmer btn-press"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>

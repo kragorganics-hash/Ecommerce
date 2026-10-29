@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShoppingBag, User, Search, Menu, X, ShieldAlert } from "lucide-react";
 import { useCart } from "@/features/cart/CartContext";
@@ -51,16 +52,23 @@ export function Navbar() {
 
             {/* Brand Logo */}
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="flex items-center space-x-2.5 group">
-                <div className="w-10 h-10 rounded-full bg-[#1b3b2c] text-[#fbf9f5] flex items-center justify-center font-bold text-lg tracking-tighter shadow-sm group-hover:bg-[#25513d] transition-colors">
-                  KO
+              <Link href="/" className="flex items-center space-x-3 group">
+                <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white p-1 border border-[#e6dfd3] shadow-xs group-hover:scale-105 group-hover:shadow-md transition-all duration-300 flex items-center justify-center">
+                  <Image
+                    src="/images/krag-logo.jpeg"
+                    alt="KRAG Logo"
+                    width={44}
+                    height={44}
+                    priority
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="flex flex-col">
                   <span className="font-serif text-2xl font-bold tracking-tight text-[#141716] leading-none group-hover:text-[#1b3b2c] transition-colors">
                     KRAG
                   </span>
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#8c571e] font-semibold mt-0.5">
-                    ORGANIC
+                  <span className="text-[9px] uppercase tracking-[0.2em] text-[#8c571e] font-bold mt-0.5">
+                    ORGANIC &bull; NEPAL
                   </span>
                 </div>
               </Link>

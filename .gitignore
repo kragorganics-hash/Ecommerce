@@ -42,6 +42,9 @@ yarn-error.log*
 .env.production.local
 !.env.example
 
+# Temporary user assets folder
+New folder/
+
 # vercel
 .vercel
 
