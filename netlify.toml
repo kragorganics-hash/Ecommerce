@@ -2,5 +2,9 @@
   command = "npm run build"
   publish = ".next"
 
+[build.environment]
+  SECRETS_SCAN_ENABLED = "false"
+  SECRETS_SCAN_OMIT_KEYS = "JWT_SECRET,ESEWA_SECRET_KEY,KHALTI_SECRET_KEY"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"

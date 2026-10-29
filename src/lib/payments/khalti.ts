@@ -3,7 +3,7 @@ import { PaymentInitiateParams, PaymentInitiateResult, PaymentProvider, PaymentV
 export class KhaltiPaymentProvider implements PaymentProvider {
   name = "Khalti";
 
-  private secretKey = process.env.KHALTI_SECRET_KEY || "test_secret_key_f59e8b7d18b24b9993ea11a8187f545f";
+  private secretKey = process.env.KHALTI_SECRET_KEY || "";
   private apiUrl = process.env.KHALTI_API_URL || "https://a.khalti.com/api/v2";
 
   async initiatePayment(params: PaymentInitiateParams): Promise<PaymentInitiateResult> {

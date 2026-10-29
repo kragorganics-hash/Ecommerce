@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { db } from "./db";
 
-const JWT_SECRET = process.env.JWT_SECRET || "krag_organic_secure_jwt_token_secret_min_32_chars_key_2026";
+const JWT_SECRET = process.env.JWT_SECRET || "fallback_dev_internal_auth_key_minimum_32_characters";
 const secretKey = new TextEncoder().encode(JWT_SECRET);
 
 export const AUTH_COOKIE_NAME = "krag_auth_token";
