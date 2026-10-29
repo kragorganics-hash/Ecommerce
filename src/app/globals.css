@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf9f5;
+  --foreground: #141716;
+
+  /* Krag Organic Brand Palette */
+  --forest-950: #0a1711;
+  --forest-900: #12281e;
+  --forest-800: #1b3b2c;
+  --forest-700: #25513d;
+  --forest-600: #31684f;
+  --forest-500: #3f8364;
+  --forest-200: #b5d5c5;
+  --forest-100: #dcece3;
+  --forest-50: #f2f7f4;
+
+  --earth-800: #754718;
+  --earth-700: #8c571e;
+  --earth-600: #b87328;
+  --earth-500: #c98a3b;
+  --earth-100: #faebd7;
+  --earth-50: #fdf8f0;
+
+  --warm-white: #fbf9f5;
+  --warm-sand: #f3eee3;
+  --warm-border: #e6dfd3;
+  --charcoal-950: #0d0f0e;
+  --charcoal-900: #141716;
+  --charcoal-800: #1e2321;
+  --charcoal-700: #2b322f;
+  --charcoal-600: #404b46;
+  --charcoal-500: #5c6b64;
+  --charcoal-400: #85958d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-forest-950: var(--forest-950);
+  --color-forest-900: var(--forest-900);
+  --color-forest-800: var(--forest-800);
+  --color-forest-700: var(--forest-700);
+  --color-forest-600: var(--forest-600);
+  --color-forest-500: var(--forest-500);
+  --color-forest-200: var(--forest-200);
+  --color-forest-100: var(--forest-100);
+  --color-forest-50: var(--forest-50);
+
+  --color-earth-800: var(--earth-800);
+  --color-earth-700: var(--earth-700);
+  --color-earth-600: var(--earth-600);
+  --color-earth-500: var(--earth-500);
+  --color-earth-100: var(--earth-100);
+  --color-earth-50: var(--earth-50);
+
+  --color-warm-white: var(--warm-white);
+  --color-warm-sand: var(--warm-sand);
+  --color-warm-border: var(--warm-border);
+
+  --color-charcoal-950: var(--charcoal-950);
+  --color-charcoal-900: var(--charcoal-900);
+  --color-charcoal-800: var(--charcoal-800);
+  --color-charcoal-700: var(--charcoal-700);
+  --color-charcoal-600: var(--charcoal-600);
+  --color-charcoal-500: var(--charcoal-500);
+  --color-charcoal-400: var(--charcoal-400);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f1ede4;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd3cc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9cad9f;
 }
