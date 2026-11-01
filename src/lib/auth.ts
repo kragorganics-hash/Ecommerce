@@ -89,6 +89,13 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
   }
 }
 
+export const PRIMARY_ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "kushaladhikari007@gmail.com").toLowerCase().trim();
+
+export function isAdminEmail(email?: string | null): boolean {
+  if (!email) return false;
+  return email.toLowerCase().trim() === PRIMARY_ADMIN_EMAIL;
+}
+
 /**
  * Guard for server actions and routes requiring authentication
  */
@@ -105,8 +112,8 @@ export async function requireAuth(): Promise<SessionUser> {
  */
 export async function requireAdmin(): Promise<SessionUser> {
   const user = await requireAuth();
-  if (user.role !== "ADMIN") {
-    throw new Error("Forbidden: Admin access required.");
+  if (user.role !== "ADMIN" || !isAdminEmail(user.email)) {
+    throw new Error("Forbidden: Admin access restricted to designated administrator.");
   }
   return user;
 }

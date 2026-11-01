@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { db } from "@/lib/db";
-import { signSessionToken, AUTH_COOKIE_NAME } from "@/lib/auth";
+import { signSessionToken, AUTH_COOKIE_NAME, isAdminEmail } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
+    const isTargetAdmin = isAdminEmail(normalizedEmail);
 
     let user = await db.user.findUnique({
       where: { email: normalizedEmail },
@@ -40,8 +41,13 @@ export async function POST(req: NextRequest) {
           email: normalizedEmail,
           name: name || normalizedEmail.split("@")[0],
           phone: phone || null,
-          role: "CUSTOMER",
+          role: isTargetAdmin ? "ADMIN" : "CUSTOMER",
         },
+      });
+    } else if (isTargetAdmin && user.role !== "ADMIN") {
+      user = await db.user.update({
+        where: { id: user.id },
+        data: { role: "ADMIN" },
       });
     }
 
@@ -49,7 +55,7 @@ export async function POST(req: NextRequest) {
       id: user.id,
       email: user.email,
       name: user.name,
-      role: user.role as "ADMIN" | "CUSTOMER",
+      role: (isTargetAdmin ? "ADMIN" : user.role) as "ADMIN" | "CUSTOMER",
     };
 
     const token = await signSessionToken(sessionUser);

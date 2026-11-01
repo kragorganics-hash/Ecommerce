@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, isAdminEmail } from "@/lib/auth";
 import {
   LayoutDashboard,
   Package,
@@ -23,8 +23,8 @@ export default async function AdminLayout({
 }) {
   const user = await getCurrentUser();
 
-  // Strict server-enforced role-based access control
-  if (!user || user.role !== "ADMIN") {
+  // Strict server-enforced role-based access control (restricted to designated admin email)
+  if (!user || user.role !== "ADMIN" || !isAdminEmail(user.email)) {
     redirect("/login?error=admin_access_required");
   }
 

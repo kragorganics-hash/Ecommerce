@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { type EmailOtpType } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { db } from "@/lib/db";
-import { signSessionToken, AUTH_COOKIE_NAME } from "@/lib/auth";
+import { signSessionToken, AUTH_COOKIE_NAME, isAdminEmail } from "@/lib/auth";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -66,6 +66,7 @@ export async function GET(request: Request) {
     const metadata = authenticatedUser.user_metadata || {};
     const name = metadata.full_name || metadata.name || email.split("@")[0] || "Customer";
     const phone = metadata.phone || authenticatedUser.phone || null;
+    const isTargetAdmin = isAdminEmail(email);
 
     let user = await db.user.findUnique({
       where: { email },
@@ -77,8 +78,13 @@ export async function GET(request: Request) {
           email,
           name,
           phone,
-          role: "CUSTOMER",
+          role: isTargetAdmin ? "ADMIN" : "CUSTOMER",
         },
+      });
+    } else if (isTargetAdmin && user.role !== "ADMIN") {
+      user = await db.user.update({
+        where: { id: user.id },
+        data: { role: "ADMIN" },
       });
     }
 
@@ -86,12 +92,12 @@ export async function GET(request: Request) {
       id: user.id,
       email: user.email,
       name: user.name,
-      role: user.role as "ADMIN" | "CUSTOMER",
+      role: (isTargetAdmin ? "ADMIN" : user.role) as "ADMIN" | "CUSTOMER",
     };
 
     const token = await signSessionToken(sessionUser);
 
-    const redirectPath = user.role === "ADMIN" && next === "/account/orders" ? "/admin" : next;
+    const redirectPath = isTargetAdmin || user.role === "ADMIN" ? "/admin" : (next === "/account/orders" ? "/account/orders" : next);
     const response = NextResponse.redirect(`${origin}${redirectPath}`);
 
     response.cookies.set(AUTH_COOKIE_NAME, token, {

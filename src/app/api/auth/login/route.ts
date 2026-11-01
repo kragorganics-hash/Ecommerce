@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { comparePassword, signSessionToken, AUTH_COOKIE_NAME } from "@/lib/auth";
+import { comparePassword, signSessionToken, AUTH_COOKIE_NAME, isAdminEmail } from "@/lib/auth";
 import { loginSchema } from "@/lib/validations";
 import { db } from "@/lib/db";
 
@@ -39,11 +39,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const isTargetAdmin = isAdminEmail(user.email);
+    const role = isTargetAdmin ? "ADMIN" : (user.role === "ADMIN" ? "CUSTOMER" : user.role);
+
     const sessionUser = {
       id: user.id,
       email: user.email,
       name: user.name,
-      role: user.role as "ADMIN" | "CUSTOMER",
+      role: role as "ADMIN" | "CUSTOMER",
     };
 
     const token = await signSessionToken(sessionUser);
