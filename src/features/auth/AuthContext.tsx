@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { SessionUser } from "@/lib/auth";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 
 interface AuthContextType {
   user: SessionUser | null;
@@ -51,6 +52,10 @@ export function AuthProvider({
 
   const logout = async () => {
     try {
+      if (isSupabaseConfigured()) {
+        const supabase = createClient();
+        await supabase.auth.signOut().catch(() => {});
+      }
       await fetch("/api/auth/logout", { method: "POST" });
     } catch (e) {
       console.error("Logout error", e);

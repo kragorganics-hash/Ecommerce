@@ -21,9 +21,12 @@ export async function POST(req: NextRequest) {
       where: { email: email.toLowerCase() },
     });
 
-    if (!user) {
+    if (!user || !user.passwordHash) {
       return NextResponse.json(
-        { success: false, message: "Invalid email or password." },
+        {
+          success: false,
+          message: "Invalid email or password. If you signed in using Google or Email verification link, please continue with that option.",
+        },
         { status: 401 }
       );
     }
