@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { hashPassword, comparePassword, signSessionToken, verifySessionToken } from "../src/lib/auth";
+import { hashPassword, comparePassword, signSessionToken, verifySessionToken, isAdminEmail } from "../src/lib/auth";
 
 describe("Authentication & RBAC Security", () => {
   it("hashes password with salt and successfully verifies match", async () => {
@@ -38,5 +38,14 @@ describe("Authentication & RBAC Security", () => {
     const tampered = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.corrupted.payload";
     const result = await verifySessionToken(tampered);
     expect(result).toBeNull();
+  });
+
+  it("recognizes designated administrator emails including second admin", () => {
+    expect(isAdminEmail("kushaladhikari007@gmail.com")).toBe(true);
+    expect(isAdminEmail("kragorganics@gmail.com")).toBe(true);
+    expect(isAdminEmail("KRAGORGANICS@GMAIL.COM")).toBe(true);
+    expect(isAdminEmail("KUSHALADHIKARI007@GMAIL.COM")).toBe(true);
+    expect(isAdminEmail("customer@example.com")).toBe(false);
+    expect(isAdminEmail(null)).toBe(false);
   });
 });

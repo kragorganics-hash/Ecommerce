@@ -234,9 +234,6 @@ export function Footer() {
                 <span className="px-2.5 py-1 bg-[#1a3d2c] border border-[#275940] rounded text-amber-300 font-semibold text-[11px]">
                   Cash on Delivery (COD)
                 </span>
-                <span className="px-2.5 py-1 bg-[#1a3d2c] border border-[#275940] rounded text-sky-300 font-semibold text-[11px]">
-                  Sandbox Card Mode
-                </span>
               </div>
               <p className="text-[11px] text-[#85958d] pt-2">
                 All transactions are processed through encrypted, server-verified integrations. No raw card data is ever collected or stored.

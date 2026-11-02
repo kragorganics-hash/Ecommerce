@@ -40,7 +40,7 @@ export const checkoutSchema = z.object({
 
   // Shipping & Payment
   shippingMethod: z.enum(["STANDARD", "EXPRESS"]).default("STANDARD"),
-  paymentMethod: z.enum(["ESEWA", "KHALTI", "COD", "TEST_CARD"]),
+  paymentMethod: z.enum(["ESEWA", "KHALTI", "COD"]),
   promoCode: z.string().optional(),
   orderNotes: z.string().optional(),
 

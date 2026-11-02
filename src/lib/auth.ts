@@ -89,11 +89,18 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
   }
 }
 
-export const PRIMARY_ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "kushaladhikari007@gmail.com").toLowerCase().trim();
+export const PRIMARY_ADMIN_EMAILS = [
+  "kushaladhikari007@gmail.com",
+  "kragorganics@gmail.com",
+  ...(process.env.ADMIN_EMAIL ? [process.env.ADMIN_EMAIL.toLowerCase().trim()] : []),
+];
+
+export const PRIMARY_ADMIN_EMAIL = "kushaladhikari007@gmail.com";
 
 export function isAdminEmail(email?: string | null): boolean {
   if (!email) return false;
-  return email.toLowerCase().trim() === PRIMARY_ADMIN_EMAIL;
+  const normalized = email.toLowerCase().trim();
+  return PRIMARY_ADMIN_EMAILS.includes(normalized);
 }
 
 /**

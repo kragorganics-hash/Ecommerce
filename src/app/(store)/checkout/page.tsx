@@ -7,7 +7,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import {
   ShieldCheck,
   Truck,
-  CreditCard,
   Lock,
   ArrowRight,
   AlertCircle,
@@ -38,7 +37,7 @@ function CheckoutContent() {
 
   // Shipping & Payment Method
   const [shippingMethod, setShippingMethod] = useState<"STANDARD" | "EXPRESS">("STANDARD");
-  const [paymentMethod, setPaymentMethod] = useState<"ESEWA" | "KHALTI" | "COD" | "TEST_CARD">("ESEWA");
+  const [paymentMethod, setPaymentMethod] = useState<"ESEWA" | "KHALTI" | "COD">("ESEWA");
   const [orderNotes, setOrderNotes] = useState("");
 
   // Submission State
@@ -522,33 +521,6 @@ function CheckoutContent() {
                   </div>
                   <p className="text-[11px] text-[#5c6b64] mt-2">
                     Pay cash in hand when the courier delivers your package.
-                  </p>
-                </label>
-
-                {/* Sandbox / Test Card */}
-                <label
-                  className={`p-4 rounded-xl border flex flex-col justify-between cursor-pointer transition-all ${
-                    paymentMethod === "TEST_CARD"
-                      ? "border-[#1b3b2c] bg-[#f2f7f4] ring-1 ring-[#1b3b2c]"
-                      : "border-[#e6dfd3] hover:bg-[#fbf9f5]"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2.5">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="TEST_CARD"
-                        checked={paymentMethod === "TEST_CARD"}
-                        onChange={() => setPaymentMethod("TEST_CARD")}
-                        className="text-[#1b3b2c] focus:ring-[#1b3b2c]"
-                      />
-                      <span className="font-bold text-sm text-[#141716]">Sandbox Card</span>
-                    </div>
-                    <CreditCard className="w-4 h-4 text-sky-700" />
-                  </div>
-                  <p className="text-[11px] text-[#5c6b64] mt-2">
-                    Test / Demo card simulation mode (No real financial charge).
                   </p>
                 </label>
               </div>
