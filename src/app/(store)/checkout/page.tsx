@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   ShieldCheck,
   Truck,
@@ -18,8 +18,10 @@ import { useCart } from "@/features/cart/CartContext";
 import { useAuth } from "@/features/auth/AuthContext";
 import { formatPrice } from "@/lib/utils";
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const urlError = searchParams.get("error");
   const { items, subtotal, discount, discountAmount, clearCart } = useCart();
   const { user } = useAuth();
 
@@ -42,6 +44,15 @@ export default function CheckoutPage() {
   // Submission State
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Set error message from URL if payment was cancelled or failed
+  useEffect(() => {
+    if (urlError === "payment_failed") {
+      setErrorMessage(
+        "Payment was cancelled or could not be completed at the gateway. Your cart items have been saved so you can retry or choose Cash on Delivery."
+      );
+    }
+  }, [urlError]);
 
   // Pre-fill user profile if logged in
   useEffect(() => {
@@ -142,9 +153,8 @@ export default function CheckoutPage() {
         return;
       }
 
-      // Handle eSewa form post
+      // Handle eSewa form post (cart will be cleared upon successful verification on /checkout/success)
       if (paymentMethod === "ESEWA" && payment.formActionUrl && payment.formData) {
-        clearCart();
         const form = document.createElement("form");
         form.method = "POST";
         form.action = payment.formActionUrl;
@@ -164,7 +174,6 @@ export default function CheckoutPage() {
 
       // Handle Khalti or external redirects
       if (payment.redirectUrl) {
-        clearCart();
         window.location.href = payment.redirectUrl;
         return;
       }
@@ -666,5 +675,20 @@ export default function CheckoutPage() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <React.Suspense
+      fallback={
+        <div className="max-w-7xl mx-auto px-4 py-24 text-center">
+          <div className="w-8 h-8 border-2 border-[#1b3b2c] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs text-[#5c6b64] mt-3">Loading checkout...</p>
+        </div>
+      }
+    >
+      <CheckoutContent />
+    </React.Suspense>
   );
 }

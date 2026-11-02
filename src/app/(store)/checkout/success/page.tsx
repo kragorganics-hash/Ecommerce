@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2, Truck, Package, ArrowRight, ShieldCheck } from "lucide-react";
 import { db } from "@/lib/db";
 import { formatPrice } from "@/lib/utils";
+import { ClearCartOnMount } from "@/components/cart/ClearCartOnMount";
 
 interface SuccessPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -26,6 +27,7 @@ export default async function OrderSuccessPage(props: SuccessPageProps) {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <ClearCartOnMount />
       <div className="bg-white border border-[#e6dfd3] rounded-3xl p-8 sm:p-12 shadow-sm text-center">
         {/* Success Icon */}
         <div className="w-16 h-16 rounded-full bg-[#e8f0eb] text-[#1b3b2c] flex items-center justify-center mx-auto mb-6">

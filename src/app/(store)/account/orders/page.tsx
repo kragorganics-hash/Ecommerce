@@ -14,7 +14,12 @@ export default async function CustomerOrdersPage() {
   }
 
   const orders = await db.order.findMany({
-    where: { userId: user.id },
+    where: {
+      OR: [
+        { userId: user.id },
+        { guestEmail: user.email.toLowerCase() },
+      ],
+    },
     orderBy: { createdAt: "desc" },
     include: {
       items: true,
