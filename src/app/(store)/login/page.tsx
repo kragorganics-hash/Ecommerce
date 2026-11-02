@@ -2,6 +2,7 @@
 
 import React, { useState, Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/features/auth/AuthContext";
 import { Lock, Mail, AlertCircle, ArrowRight, CheckCircle2, Sparkles, KeyRound } from "lucide-react";
@@ -170,9 +171,18 @@ function LoginForm() {
     <div className="max-w-md mx-auto px-4 py-16">
       <div className="bg-white border border-[#e6dfd3] rounded-2xl p-8 shadow-xs">
         <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-full bg-[#e8f0eb] text-[#1b3b2c] flex items-center justify-center font-bold text-base mx-auto mb-3">
-            KO
-          </div>
+          <Link href="/" className="inline-block mx-auto mb-3">
+            <div className="w-14 h-14 rounded-2xl overflow-hidden bg-white p-1 border border-[#e6dfd3] shadow-xs flex items-center justify-center mx-auto hover:scale-105 transition-transform">
+              <Image
+                src="/images/krag-logo.jpeg"
+                alt="KRAG Organic Logo"
+                width={56}
+                height={56}
+                priority
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </Link>
           <h1 className="font-serif text-2xl font-bold text-[#141716]">Welcome Back</h1>
           <p className="text-xs text-[#5c6b64] mt-1">
             Sign in to track orders and manage your clean nutrition account.
@@ -368,19 +378,6 @@ function LoginForm() {
             )}
           </div>
         )}
-
-        {/* Demo credentials hint */}
-        <div className="mt-6 p-3 bg-[#f8f5ee] rounded-xl text-[11px] text-[#5c6b64] space-y-1 border border-[#e6dfd3]">
-          <p className="font-semibold text-[#141716]">Sample Accounts for Testing (Password):</p>
-          <p>
-            Admin: <strong className="text-[#1b3b2c]">admin@kragorganic.com</strong> /{" "}
-            <strong className="text-[#1b3b2c]">KragAdmin2026!</strong>
-          </p>
-          <p>
-            Customer: <strong className="text-[#1b3b2c]">customer@example.com</strong> /{" "}
-            <strong className="text-[#1b3b2c]">Customer2026!</strong>
-          </p>
-        </div>
 
         <div className="mt-6 text-center text-xs text-[#5c6b64] pt-4 border-t border-[#f3eee3]">
           Don&apos;t have an account yet?{" "}

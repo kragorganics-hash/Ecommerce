@@ -2,6 +2,7 @@
 
 import React, { useState, Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/features/auth/AuthContext";
 import { Lock, Mail, User, Phone, AlertCircle, ArrowRight, CheckCircle2 } from "lucide-react";
@@ -209,9 +210,18 @@ function RegisterForm() {
     <div className="max-w-md mx-auto px-4 py-16">
       <div className="bg-white border border-[#e6dfd3] rounded-2xl p-8 shadow-xs">
         <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-full bg-[#e8f0eb] text-[#1b3b2c] flex items-center justify-center font-bold text-base mx-auto mb-3">
-            KO
-          </div>
+          <Link href="/" className="inline-block mx-auto mb-3">
+            <div className="w-14 h-14 rounded-2xl overflow-hidden bg-white p-1 border border-[#e6dfd3] shadow-xs flex items-center justify-center mx-auto hover:scale-105 transition-transform">
+              <Image
+                src="/images/krag-logo.jpeg"
+                alt="KRAG Organic Logo"
+                width={56}
+                height={56}
+                priority
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </Link>
           <h1 className="font-serif text-2xl font-bold text-[#141716]">Create Your Account</h1>
           <p className="text-xs text-[#5c6b64] mt-1">
             Join the Krag Organic athletic and wellness community.
