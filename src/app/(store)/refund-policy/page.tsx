@@ -24,7 +24,7 @@ export default function RefundPolicyPage() {
         <section className="space-y-3">
           <h2 className="font-serif text-lg font-bold text-[#141716]">2. Damaged or Defective Items</h2>
           <p>
-            If your package arrives with a compromised safety seal, cracked container, or incorrect variant, please photograph the parcel and notify us within 48 hours at <strong className="text-[#1b3b2c]">care@kragorganic.com</strong>. We will arrange a free immediate replacement dispatch.
+            If your package arrives with a compromised safety seal, cracked container, or incorrect variant, please photograph the parcel and notify us within 48 hours via email at <strong className="text-[#1b3b2c]">kragorganics@gmail.com</strong> or WhatsApp/Hotline at <strong className="text-[#1b3b2c]">+977 9816840755</strong>. We will arrange a free immediate replacement dispatch.
           </p>
         </section>
 

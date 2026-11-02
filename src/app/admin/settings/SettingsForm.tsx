@@ -13,8 +13,8 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
 
   const [storeName, setStoreName] = useState(initialSettings["store_name"] || "Krag Organic");
   const [storeTagline, setStoreTagline] = useState(initialSettings["store_tagline"] || "Pure botanical sports nutrition & clean supplements");
-  const [storeEmail, setStoreEmail] = useState(initialSettings["store_email"] || "care@kragorganic.com");
-  const [storePhone, setStorePhone] = useState(initialSettings["store_phone"] || "+977-1-4567890");
+  const [storeEmail, setStoreEmail] = useState(initialSettings["store_email"] || "kragorganics@gmail.com");
+  const [storePhone, setStorePhone] = useState(initialSettings["store_phone"] || "+977 9816840755");
   const [storeAddress, setStoreAddress] = useState(initialSettings["store_address"] || "Kathmandu Valley, Nepal");
   const [freeShippingThreshold, setFreeShippingThreshold] = useState(initialSettings["free_shipping_threshold"] || "3500");
   const [standardShippingFee, setStandardShippingFee] = useState(initialSettings["standard_shipping_fee"] || "150");
@@ -244,13 +244,13 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
           <div className="p-3.5 bg-white border border-[#e6dfd3] rounded-xl flex items-center justify-between">
             <div>
               <span className="text-[10px] uppercase font-bold text-[#85958d] block tracking-wider">
-                Direct Contact
+                Support &amp; Contact
               </span>
               <a
-                href="mailto:kushaladhikari007@gmail.com"
+                href="mailto:kragorganics@gmail.com"
                 className="text-xs font-bold text-[#1b3b2c] hover:underline mt-0.5 block"
               >
-                kushaladhikari007@gmail.com
+                kragorganics@gmail.com
               </a>
             </div>
             <span className="text-[10px] text-[#85958d] font-mono bg-[#f4f1ea] px-2 py-0.5 rounded border border-[#e6dfd3]">

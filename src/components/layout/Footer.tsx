@@ -180,10 +180,20 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <span className="text-[#85958d]">Hotline: +977-1-4567890</span>
+                <a
+                  href="tel:+9779816840755"
+                  className="text-[#85958d] hover:text-white transition-colors"
+                >
+                  Hotline: +977 9816840755
+                </a>
               </li>
               <li>
-                <span className="text-[#85958d]">care@kragorganic.com</span>
+                <a
+                  href="mailto:kragorganics@gmail.com"
+                  className="text-[#85958d] hover:text-white transition-colors"
+                >
+                  kragorganics@gmail.com
+                </a>
               </li>
             </ul>
           </div>
@@ -244,12 +254,12 @@ export function Footer() {
             </span>
           </div>
           <div className="flex items-center space-x-2 text-xs">
-            <span className="text-[#85958d]">For technical inquiries &amp; development:</span>
+            <span className="text-[#85958d]">Customer Support:</span>
             <a
-              href="mailto:kushaladhikari007@gmail.com"
+              href="mailto:kragorganics@gmail.com"
               className="text-[#dcb36d] hover:text-white font-semibold underline underline-offset-4 transition-colors"
             >
-              kushaladhikari007@gmail.com
+              kragorganics@gmail.com
             </a>
           </div>
         </div>

@@ -108,12 +108,7 @@ export default async function AdminLayout({
               <span className="text-[9px] bg-[#1a3d2c] text-[#b5d5c5] px-1.5 py-0.5 rounded font-mono">PROTECTED</span>
             </div>
             <p className="font-bold text-white text-xs">Kushal Adhikari</p>
-            <a
-              href="mailto:kushaladhikari007@gmail.com"
-              className="text-[#85958d] hover:text-[#dcb36d] text-[10px] block transition-colors truncate"
-            >
-              kushaladhikari007@gmail.com
-            </a>
+            <p className="text-[#85958d] text-[10px]">Lead Platform Engineer</p>
           </div>
         </div>
       </aside>
@@ -144,8 +139,8 @@ export default async function AdminLayout({
             <span className="flex items-center space-x-1.5 text-[11px]">
               <span>System designed &amp; developed by <strong className="text-[#141716] font-semibold">Kushal Adhikari</strong></span>
               <span>&bull;</span>
-              <a href="mailto:kushaladhikari007@gmail.com" className="text-[#1b3b2c] font-medium hover:underline">
-                kushaladhikari007@gmail.com
+              <a href="mailto:kragorganics@gmail.com" className="text-[#1b3b2c] font-medium hover:underline">
+                kragorganics@gmail.com
               </a>
             </span>
           </div>

@@ -43,7 +43,7 @@ export default function PrivacyPolicyPage() {
         <section className="space-y-3">
           <h2 className="font-serif text-lg font-bold text-[#141716]">4. Contact Our Privacy Officer</h2>
           <p>
-            For any queries, account data export, or deletion requests, please contact: <strong className="text-[#1b3b2c]">privacy@kragorganic.com</strong>.
+            For any queries, account data export, or deletion requests, please contact our team at: <strong className="text-[#1b3b2c]">kragorganics@gmail.com</strong> (Hotline: +977 9816840755).
           </p>
         </section>
       </div>
