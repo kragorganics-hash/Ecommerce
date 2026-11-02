@@ -242,7 +242,7 @@ export async function POST(req: NextRequest) {
       customerEmail: email,
       customerPhone: phone,
       returnUrl: `${appUrl}/api/payments/verify`,
-      failureUrl: `${appUrl}/checkout?error=payment_failed`,
+      failureUrl: `${appUrl}/api/payments/cancel?orderId=${order.id}`,
     });
 
     return NextResponse.json({

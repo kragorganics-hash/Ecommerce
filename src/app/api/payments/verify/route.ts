@@ -184,10 +184,57 @@ async function handlePaymentVerification(req: NextRequest) {
         new URL(`/checkout/success?orderNumber=${order.orderNumber}`, req.url)
       );
     } else {
-      // Payment failed
-      await db.order.update({
-        where: { id: order.id },
-        data: { paymentStatus: "FAILED" },
+      // Payment failed or cancelled at gateway
+      await db.$transaction(async (tx) => {
+        await tx.order.update({
+          where: { id: order.id },
+          data: {
+            status: "CANCELLED",
+            paymentStatus: "FAILED",
+            cancellationReason: `Payment verification failed (${verifyResult.message || "declined/cancelled"})`,
+          },
+        });
+
+        if (order.payments.length > 0) {
+          await tx.payment.updateMany({
+            where: { orderId: order.id },
+            data: { status: "FAILED" },
+          });
+        }
+
+        const orderWithItems = await tx.order.findUnique({
+          where: { id: order.id },
+          include: { items: true },
+        });
+
+        if (orderWithItems) {
+          for (const item of orderWithItems.items) {
+            if (item.productVariantId) {
+              const variant = await tx.productVariant.findUnique({
+                where: { id: item.productVariantId },
+              });
+
+              if (variant) {
+                const restoredStock = variant.stock + item.quantity;
+                await tx.productVariant.update({
+                  where: { id: item.productVariantId },
+                  data: { stock: restoredStock },
+                });
+
+                await tx.inventoryLog.create({
+                  data: {
+                    productVariantId: item.productVariantId,
+                    changeQuantity: item.quantity,
+                    previousStock: variant.stock,
+                    newStock: restoredStock,
+                    reason: "RETURN",
+                    notes: `Restocked failed order ${order.orderNumber}`,
+                  },
+                });
+              }
+            }
+          }
+        }
       });
 
       return NextResponse.redirect(
