@@ -14,23 +14,88 @@ async function handlePaymentVerification(req: NextRequest) {
   const url = new URL(req.url);
   const searchParams = url.searchParams;
 
-  const orderId = searchParams.get("orderId");
-  const encodedData = searchParams.get("data"); // eSewa v2
+  let rawOrderId = searchParams.get("orderId");
+  let encodedData = searchParams.get("data"); // eSewa v2
   const pidx = searchParams.get("pidx"); // Khalti
   const transactionId = searchParams.get("transactionId");
   const paymentFlag = searchParams.get("payment");
 
-  if (!orderId) {
-    return NextResponse.redirect(new URL("/checkout?error=missing_order", req.url));
+  // Handle URL double question marks if eSewa blindly appended ?data=
+  if (!encodedData && req.url.includes("data=")) {
+    try {
+      const match = req.url.match(/[?&]data=([^&]+)/);
+      if (match && match[1]) {
+        encodedData = decodeURIComponent(match[1]);
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  // Parse eSewa data if available
+  let decodedEsewa: Record<string, unknown> | null = null;
+  if (encodedData) {
+    try {
+      const decodedStr = Buffer.from(encodedData, "base64").toString("utf-8");
+      decodedEsewa = JSON.parse(decodedStr);
+    } catch (e) {
+      console.error("Failed to decode eSewa response data:", e);
+    }
   }
 
   try {
-    const order = await db.order.findUnique({
-      where: { id: orderId },
-      include: { payments: true },
-    });
+    // Robust Order Resolution:
+    // 1. From eSewa's transaction_uuid (format: KRAG-2026-XXXXXX-timestamp)
+    // 2. From orderId / cleanOrderId
+    // 3. From transactionId
+    let order = null;
+
+    if (decodedEsewa?.transaction_uuid) {
+      const uuid = String(decodedEsewa.transaction_uuid);
+      const extractedOrderNumber = uuid.includes("-")
+        ? uuid.slice(0, uuid.lastIndexOf("-"))
+        : uuid;
+
+      order = await db.order.findFirst({
+        where: {
+          OR: [
+            { orderNumber: extractedOrderNumber },
+            { orderNumber: uuid },
+            { id: uuid },
+            { id: extractedOrderNumber },
+          ],
+        },
+        include: { payments: true },
+      });
+    }
+
+    if (!order && rawOrderId) {
+      const cleanOrderId = rawOrderId.split("?")[0].split("&")[0];
+      order = await db.order.findFirst({
+        where: {
+          OR: [
+            { id: cleanOrderId },
+            { orderNumber: cleanOrderId },
+          ],
+        },
+        include: { payments: true },
+      });
+    }
+
+    if (!order && transactionId) {
+      order = await db.order.findFirst({
+        where: {
+          OR: [
+            { id: transactionId },
+            { orderNumber: transactionId },
+          ],
+        },
+        include: { payments: true },
+      });
+    }
 
     if (!order) {
+      console.error("Payment verification order not found. Request URL:", req.url);
       return NextResponse.redirect(new URL("/checkout?error=order_not_found", req.url));
     }
 

@@ -30,8 +30,8 @@ export class EsewaPaymentProvider implements PaymentProvider {
       product_code: this.merchantCode,
       product_service_charge: "0",
       product_delivery_charge: "0",
-      success_url: `${params.returnUrl}?orderId=${params.orderId}`,
-      failure_url: `${params.failureUrl}?orderId=${params.orderId}`,
+      success_url: `${params.returnUrl}`,
+      failure_url: `${params.failureUrl}`,
       signed_field_names: "total_amount,transaction_uuid,product_code",
       signature: signature,
     };
