@@ -36,13 +36,10 @@ export class KhaltiPaymentProvider implements PaymentProvider {
       const data = await res.json();
 
       if (!res.ok || !data.payment_url) {
-        // Fallback for offline / demo mode
         return {
-          success: true,
+          success: false,
           paymentMethod: "KHALTI",
-          redirectUrl: `${params.returnUrl}?orderId=${params.orderId}&pidx=mock_khalti_${Date.now()}&status=Completed`,
-          transactionId: `mock_khalti_${Date.now()}`,
-          message: data.detail || "Khalti sandbox simulated gateway",
+          message: data.detail || "Khalti payment initiation failed. Please check your Khalti API key.",
         };
       }
 
@@ -53,21 +50,28 @@ export class KhaltiPaymentProvider implements PaymentProvider {
         transactionId: data.pidx,
         message: "Redirecting to Khalti payment gateway",
       };
-    } catch {
-      // In sandbox/local dev when network isn't reachable, provide reliable sandbox fallback
-      const mockPidx = `mock_khalti_${Date.now()}`;
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Network error reaching Khalti";
       return {
-        success: true,
+        success: false,
         paymentMethod: "KHALTI",
-        redirectUrl: `${params.returnUrl}?orderId=${params.orderId}&pidx=${mockPidx}&status=Completed`,
-        transactionId: mockPidx,
-        message: "Khalti sandbox fallback checkout",
+        message: `Khalti connection error: ${msg}`,
       };
     }
   }
 
   async verifyPayment(params: PaymentVerifyParams): Promise<PaymentVerifyResult> {
     const pidx = params.pidx || params.transactionId;
+    if (!pidx || pidx.startsWith("mock_")) {
+      return {
+        success: false,
+        status: "FAILED",
+        transactionId: pidx || "UNKNOWN",
+        amount: 0,
+        providerRaw: {},
+        message: "Invalid Khalti transaction identifier",
+      };
+    }
 
     if (!pidx) {
       return {

@@ -128,6 +128,20 @@ export default function CheckoutPage() {
       // Order created successfully in DB with inventory decremented
       const payment = data.payment;
 
+      // Handle Cash on Delivery
+      if (paymentMethod === "COD") {
+        clearCart();
+        router.push(`/checkout/success?orderNumber=${data.orderNumber}&method=cod`);
+        return;
+      }
+
+      // Verify payment initiation succeeded
+      if (!payment || !payment.success) {
+        setIsSubmitting(false);
+        setErrorMessage(payment?.message || "Payment initiation failed with gateway. Please try another method or Cash on Delivery.");
+        return;
+      }
+
       // Handle eSewa form post
       if (paymentMethod === "ESEWA" && payment.formActionUrl && payment.formData) {
         clearCart();
@@ -148,16 +162,16 @@ export default function CheckoutPage() {
         return;
       }
 
-      // Handle Khalti or other redirects
+      // Handle Khalti or external redirects
       if (payment.redirectUrl) {
         clearCart();
         window.location.href = payment.redirectUrl;
         return;
       }
 
-      // Direct fallback
-      clearCart();
-      router.push(`/checkout/success?orderNumber=${data.orderNumber}`);
+      // Final fallback
+      setIsSubmitting(false);
+      setErrorMessage("Unable to redirect to payment gateway. Please contact support.");
     } catch (err: unknown) {
       console.error("Checkout submission error:", err);
       setIsSubmitting(false);
