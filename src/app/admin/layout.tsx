@@ -100,6 +100,21 @@ export default async function AdminLayout({
               <p className="text-[10px] text-[#85958d] truncate">{user.email}</p>
             </div>
           </div>
+
+          {/* Immutable Developer Credit */}
+          <div className="px-3 py-2.5 text-[11px] bg-[#0b1b13] rounded-lg border border-[#1f4533] space-y-1">
+            <div className="flex items-center justify-between text-[#85958d]">
+              <span className="font-semibold uppercase text-[9px] tracking-wider text-[#dcb36d]">System Architect</span>
+              <span className="text-[9px] bg-[#1a3d2c] text-[#b5d5c5] px-1.5 py-0.5 rounded font-mono">PROTECTED</span>
+            </div>
+            <p className="font-bold text-white text-xs">Kushal Adhikari</p>
+            <a
+              href="mailto:kushaladhikari007@gmail.com"
+              className="text-[#85958d] hover:text-[#dcb36d] text-[10px] block transition-colors truncate"
+            >
+              kushaladhikari007@gmail.com
+            </a>
+          </div>
         </div>
       </aside>
 
@@ -118,9 +133,23 @@ export default async function AdminLayout({
         </header>
 
         {/* Content Body */}
-        <main className="p-6 lg:p-10 max-w-7xl w-full mx-auto">
+        <main className="p-6 lg:p-10 max-w-7xl w-full mx-auto flex-1">
           {children}
         </main>
+
+        {/* Admin Footer */}
+        <footer className="border-t border-[#e6dfd3] bg-[#fbf9f5] px-6 py-4 text-xs text-[#85958d]">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <span>&copy; {new Date().getFullYear()} Krag Organic &bull; Enterprise Admin Portal</span>
+            <span className="flex items-center space-x-1.5 text-[11px]">
+              <span>System designed &amp; developed by <strong className="text-[#141716] font-semibold">Kushal Adhikari</strong></span>
+              <span>&bull;</span>
+              <a href="mailto:kushaladhikari007@gmail.com" className="text-[#1b3b2c] font-medium hover:underline">
+                kushaladhikari007@gmail.com
+              </a>
+            </span>
+          </div>
+        </footer>
       </div>
     </div>
   );

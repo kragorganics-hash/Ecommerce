@@ -235,6 +235,25 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Creator Attribution (Immutable Core Component) */}
+        <div className="mt-8 pt-6 border-t border-[#1a3829] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs bg-[#0f241a]/70 px-5 py-4 rounded-xl border border-[#1f4533]">
+          <div className="flex items-center space-x-2.5 text-[#dcb36d]">
+            <span className="w-2 h-2 rounded-full bg-[#dcb36d] animate-pulse"></span>
+            <span className="font-medium tracking-wide text-[#f2f7f4]">
+              Website Designed &amp; Developed by <strong className="text-[#dcb36d] font-bold">Kushal Adhikari</strong>
+            </span>
+          </div>
+          <div className="flex items-center space-x-2 text-xs">
+            <span className="text-[#85958d]">For technical inquiries &amp; development:</span>
+            <a
+              href="mailto:kushaladhikari007@gmail.com"
+              className="text-[#dcb36d] hover:text-white font-semibold underline underline-offset-4 transition-colors"
+            >
+              kushaladhikari007@gmail.com
+            </a>
+          </div>
+        </div>
+
         {/* Bottom Disclaimer & Copyright */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-[#85958d] gap-4">
           <div className="space-y-1 text-center md:text-left">

@@ -29,7 +29,24 @@ export async function POST(req: NextRequest) {
       ? body
       : Object.entries(body).map(([key, value]) => ({ key, value: String(value) }));
 
+    const FORBIDDEN_KEYS = new Set([
+      "developer",
+      "author",
+      "creator",
+      "created_by",
+      "attribution",
+      "built_by",
+      "architect",
+      "system_developer",
+      "developer_email",
+    ]);
+
     for (const item of entries) {
+      if (FORBIDDEN_KEYS.has(item.key.toLowerCase())) {
+        // Core system attribution is immutable and protected from admin modification
+        continue;
+      }
+
       await db.storeSetting.upsert({
         where: { key: item.key },
         update: { value: String(item.value) },

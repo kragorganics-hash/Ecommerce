@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Settings, Check, AlertCircle } from "lucide-react";
+import { Settings, Check, AlertCircle, ShieldCheck, Lock } from "lucide-react";
 
 interface SettingsFormProps {
   initialSettings: Record<string, string>;
@@ -204,6 +204,59 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
             onChange={(e) => setAnnouncementBar(e.target.value)}
             className="w-full px-3 py-2 bg-[#fbf9f5] border border-[#e6dfd3] rounded-lg"
           />
+        </div>
+      </div>
+
+      {/* Permanent Developer & Platform Attribution (Locked & Non-Editable) */}
+      <div className="bg-[#fbf9f5] border border-[#e6dfd3] rounded-2xl p-6 shadow-xs space-y-4">
+        <div className="flex items-center justify-between border-b border-[#e6dfd3] pb-3">
+          <div className="flex items-center space-x-2">
+            <Lock className="w-4 h-4 text-[#1b3b2c]" />
+            <h2 className="font-serif text-base font-bold text-[#141716]">
+              4. System Architecture & Platform Developer
+            </h2>
+          </div>
+          <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#e8f0eb] text-[#1b3b2c] border border-[#c2dbce]">
+            <ShieldCheck className="w-3 h-3 text-[#1b3b2c]" />
+            <span>Immutable Core System Component</span>
+          </span>
+        </div>
+
+        <p className="text-xs text-[#5c6b64] leading-relaxed">
+          This eCommerce platform, authentication system, database models, and domestic payment integrations (eSewa &amp; Khalti) were built by <strong>Kushal Adhikari</strong>. This attribution is hardcoded into the codebase and cannot be edited, overridden, or removed from this administration portal.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+          <div className="p-3.5 bg-white border border-[#e6dfd3] rounded-xl flex items-center justify-between">
+            <div>
+              <span className="text-[10px] uppercase font-bold text-[#85958d] block tracking-wider">
+                Platform Developer
+              </span>
+              <span className="text-xs font-bold text-[#141716] mt-0.5 block">
+                Kushal Adhikari
+              </span>
+            </div>
+            <span className="text-[10px] text-[#85958d] font-mono bg-[#f4f1ea] px-2 py-0.5 rounded border border-[#e6dfd3]">
+              Read-Only
+            </span>
+          </div>
+
+          <div className="p-3.5 bg-white border border-[#e6dfd3] rounded-xl flex items-center justify-between">
+            <div>
+              <span className="text-[10px] uppercase font-bold text-[#85958d] block tracking-wider">
+                Direct Contact
+              </span>
+              <a
+                href="mailto:kushaladhikari007@gmail.com"
+                className="text-xs font-bold text-[#1b3b2c] hover:underline mt-0.5 block"
+              >
+                kushaladhikari007@gmail.com
+              </a>
+            </div>
+            <span className="text-[10px] text-[#85958d] font-mono bg-[#f4f1ea] px-2 py-0.5 rounded border border-[#e6dfd3]">
+              Verified
+            </span>
+          </div>
         </div>
       </div>
 
