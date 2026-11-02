@@ -5,7 +5,9 @@ export class EsewaPaymentProvider implements PaymentProvider {
   name = "eSewa";
 
   private merchantCode = process.env.ESEWA_MERCHANT_CODE || "EPAYTEST";
-  private secretKey = process.env.ESEWA_SECRET_KEY || "8gBm/Du7wf223Kt2BgMRNkKmPub50Gj1";
+  private secretKey = process.env.ESEWA_SECRET_KEY && process.env.ESEWA_SECRET_KEY !== "8gBm/Du7wf223Kt2BgMRNkKmPub50Gj1"
+    ? process.env.ESEWA_SECRET_KEY
+    : "8gBm/:&EnhH.1/q";
   private paymentUrl = process.env.ESEWA_PAYMENT_URL || "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
 
   private generateSignature(message: string): string {
